@@ -2412,30 +2412,40 @@ Properties represent the current state of elements in the DOM and are accessed d
 
 99. ### What are events
 
-     Events are "things" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can `react` on these events. Some of the examples of HTML events are,
+     Events in web development refer to "things" that happen to HTML elements, such as user actions or system-generated notifications. JavaScript can respond to these events by executing code (functions) when the event occurs.
 
-     1. Web page has finished loading
-     2. Input field was changed
-     3. Button was clicked
+     1. Web page has finished loading (load event)
+     2. nput field was changed (change event)
+     3. Button was clicked (click event)
 
      Let's describe the behavior of click event for button element,
 
-     ```javascript
+```javascript
      <!doctype html>
-     <html>
-      <head>
-        <script>
-          function greeting() {
-            alert('Hello! Good morning');
-          }
-        </script>
-      </head>
-      <body>
-        <button type="button" onclick="greeting()">Click me</button>
-      </body>
-     </html>
-     ```
+<html>
+ <head>
+   <script>
+     function greeting() {
+       alert('Hello! Good morning');
+     }
+   </script>
+ </head>
+ <body>
+   <button type="button" onclick="greeting()">Click me</button>
+ </body>
+</html>
+ ```
+Breakdown:
 
+JavaScript Function: You define a JavaScript function greeting() inside a <script> tag in the <head> section. This function displays an alert message saying "Hello! Good morning" when called.
+
+Button Element: In the <body> section, you have a <button> element:
+
+type="button" ensures it behaves purely as a button without submitting a form.
+onclick="greeting()" specifies that when this button is clicked, the greeting() function should be executed.
+Event Handling: When the user clicks the "Click me" button, the onclick event is triggered, causing the greeting() function to execute, which then shows an alert dialog with the specified message.
+
+Conclusion:
      **[⬆ Back to Top](#table-of-contents)**
 
 100. ### Who created javascript
