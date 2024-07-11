@@ -1,4 +1,4 @@
-# JavaScript Interview Questions & Answers
+c# JavaScript Interview Questions & Answers
 84,
 > Click :star:if you like the project and follow [@SudheerJonna](https://twitter.com/SudheerJonna) for more updates. Coding questions available [here](#coding-exercise). Check [DataStructures and Algorithms](https://github.com/sudheerj/datastructures-algorithms) for DSA related questions and [ECMAScript](https://github.com/sudheerj/ECMAScript-features) for all ES features.).
 
@@ -2488,26 +2488,45 @@ Common Use Cases: Use preventDefault() to customize or control what happens when
 
 102. ### What is the use of stopPropagation method
 
-     The stopPropagation method is used to stop the event from bubbling up the event chain. For example, the below nested divs with stopPropagation method prevents default event propagation when clicking on nested div(Div1)
+     The stopPropagation() method in JavaScript is used to prevent further propagation of the current event in the event bubbling or capturing phase. When an event occurs on an element, it typically triggers handlers on its parent elements (bubbling) or ancestor elements (capturing). stopPropagation() allows you to stop this propagation, ensuring that the event does not reach other elements further up the DOM tree.
 
-     ```javascript
+Example and Usage:
+
+Your provided example demonstrates the use of stopPropagation() to prevent event propagation when clicking on a nested <div> element (DIV 1):
+
+   ```javascript
      <p>Click DIV1 Element</p>
-     <div onclick="secondFunc()">DIV 2
-       <div onclick="firstFunc(event)">DIV 1</div>
-     </div>
+<div onclick="secondFunc()">DIV 2
+  <div onclick="firstFunc(event)">DIV 1</div>
+</div>
 
-     <script>
-     function firstFunc(event) {
-       alert("DIV 1");
-       event.stopPropagation();
-     }
+<script>
+function firstFunc(event) {
+  alert("DIV 1");
+  event.stopPropagation();
+}
 
-     function secondFunc() {
-       alert("DIV 2");
-     }
-     </script>
-     ```
+function secondFunc() {
+  alert("DIV 2");
+}
+</script>
+ ```
+Breakdown of the Example:
 
+HTML Structure: You have nested <div> elements (DIV 2 and DIV 1).
+
+Event Handlers:
+
+onclick="secondFunc()": Attached to the outer <div>, triggers secondFunc() when clicked.
+onclick="firstFunc(event)": Attached to the nested <div>, triggers firstFunc(event) passing the event object.
+Event Handling Functions:
+
+firstFunc(event): Displays an alert "DIV 1" when DIV 1 is clicked and then calls event.stopPropagation() to stop the event from propagating further.
+secondFunc(): Displays an alert "DIV 2" when DIV 2 is clicked.
+Clarification:
+Usage of stopPropagation(): Your example effectively demonstrates how stopPropagation() prevents the click event from reaching the outer <div> (DIV 2) after clicking on the nested <div> (DIV 1).
+
+Correctness: Your explanation accurately describes that stopPropagation() stops the event from bubbling up the DOM tree, ensuring that event handlers on parent elements do not trigger unnecessarily.
      **[⬆ Back to Top](#table-of-contents)**
 
 103. ### What are the steps involved in return false usage
