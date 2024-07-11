@@ -2104,12 +2104,89 @@ Promise.reject: Returns a rejected promise with the given reason.
 
 84. ### What is an event flow
 
-    Event flow is the order in which event is received on the web page. When you click an element that is nested in various other elements, before your click actually reaches its destination, or target element, it must trigger the click event for each of its parent elements first, starting at the top with the global window object.
+Event flow in the context of web development refers to the sequence in which events are handled as they propagate through the DOM (Document Object Model) hierarchy. There are two main approaches to event flow in JavaScript: Event Capturing (also known as Top to Bottom) and Event Bubbling (also known as Bottom to Top).
 
-    There are two ways of event flow
+Event Capturing (Top to Bottom)
 
-    1. Top to Bottom(Event Capturing)
-    2. Bottom to Top (Event Bubbling)
+Event capturing involves the event starting from the outermost parent element down to the target element where the event originated. It follows the DOM tree structure from top to bottom.
+
+Example of Event Capturing
+Consider the following HTML structure:
+```html
+html
+Copy code
+<div id="outer">
+  Outer Div
+  <div id="middle">
+    Middle Div
+    <div id="inner">
+      Inner Div
+    </div>
+  </div>
+</div>
+```
+JavaScript code to demonstrate event capturing:
+
+javascript
+Copy code
+```javascript
+// Adding event listener with capture set to true
+document.getElementById('outer').addEventListener('click', function() {
+  console.log('Outer div clicked (Capturing)');
+}, true);
+
+document.getElementById('middle').addEventListener('click', function() {
+  console.log('Middle div clicked (Capturing)');
+}, true);
+
+document.getElementById('inner').addEventListener('click', function() {
+  console.log('Inner div clicked (Capturing)');
+}, true);
+```
+In this example:
+
+If you click on the Inner Div, the console output will be:
+scss
+Copy code
+```
+Outer div clicked (Capturing)
+Middle div clicked (Capturing)
+Inner div clicked (Capturing)
+```
+Event Bubbling (Bottom to Top)
+Event bubbling starts with the target element and bubbles up through its ancestors in the DOM hierarchy, all the way up to the window object. It is the default behavior in most browsers unless specified otherwise.
+
+Example of Event Bubbling
+Using the same HTML structure:
+
+```javascript
+Copy code
+// Adding event listener without capture (default is false, which means bubbling)
+document.getElementById('outer').addEventListener('click', function() {
+  console.log('Outer div clicked (Bubbling)');
+});
+
+document.getElementById('middle').addEventListener('click', function() {
+  console.log('Middle div clicked (Bubbling)');
+});
+
+document.getElementById('inner').addEventListener('click', function() {
+  console.log('Inner div clicked (Bubbling)');
+});
+```
+In this example:
+
+If you click on the Inner Div, the console output will be:
+scss
+Copy code
+```
+Inner div clicked (Bubbling)
+Middle div clicked (Bubbling)
+Outer div clicked (Bubbling)
+```
+Summary
+Event Capturing (Top to Bottom): Events are first captured from the outermost ancestor down to the target element.
+Event Bubbling (Bottom to Top): Events first trigger on the target element and then bubble up through its ancestors to the outermost ancestor (window object).
 
     **[⬆ Back to Top](#table-of-contents)**
 
