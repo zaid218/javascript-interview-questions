@@ -2317,26 +2317,59 @@ Event Bubbling (Bottom to Top): Events first trigger on the target element and t
 
 93. ### What is the difference between an attribute and a property
 
-    Attributes are defined on the HTML markup whereas properties are defined on the DOM. For example, the below HTML element has 2 attributes type and value,
+Attributes
 
-    ```javascript
-    <input type="text" value="Name:">
-    ```
 
-    You can retrieve the attribute value as below,
+Attributes are defined in the HTML markup and provide initial values to elements. They are static and generally do not change after the page has loaded. You can access attributes using methods like getAttribute().
 
-    ```javascript
-    const input = document.querySelector("input");
-    console.log(input.getAttribute("value")); // Good morning
-    console.log(input.value); // Good morning
-    ```
+Example:
+Consider an HTML input element:
 
-    And after you change the value of the text field to "Good evening", it becomes like
 
-    ```javascript
-    console.log(input.getAttribute("value")); // Good evening
-    console.log(input.value); // Good evening
-    ```
+```html
+<input type="text" value="Name:">
+```
+In JavaScript, you can retrieve the attribute value using getAttribute():
+
+
+```javascript
+const input = document.querySelector("input");
+console.log(input.getAttribute("value")); // Outputs: "Name:"
+```
+Properties
+
+
+Properties, on the other hand, are part of the DOM representation of the element and can be dynamic. They reflect the current state of the element and can be modified programmatically. Properties are accessed directly on the DOM element using dot notation (element.propertyName).
+
+Example:
+Continuing with our input element example:
+
+```javascript
+console.log(input.value); // Outputs: "Name:"
+```
+If you change the value of the input field programmatically:
+
+```javascript
+input.value = "Good evening";
+```
+Now, if you check the value again using both methods:
+
+```javascript
+console.log(input.getAttribute("value")); // Outputs: "Name:" (unchanged, because attribute is static)
+console.log(input.value); // Outputs: "Good evening" (updated, because property reflects current value)
+```
+Differences:
+Initialization: Attributes are set in the HTML and provide initial values. Properties can change dynamically based on user interaction or script manipulation.
+
+Access: Attributes are accessed using methods like getAttribute(), while properties are accessed directly using dot notation (element.propertyName).
+
+Reflection: Attributes are reflected in the initial state of the element and do not change unless explicitly modified. Properties reflect the current state and can be updated programmatically.
+
+Summary:
+Attributes and properties serve different purposes in web development:
+
+Attributes define initial values in HTML markup and are accessed via getAttribute().
+Properties represent the current state of elements in the DOM and are accessed directly on DOM elements.
 
     **[⬆ Back to Top](#table-of-contents)**
 
