@@ -2456,17 +2456,33 @@ Conclusion:
 
 101. ### What is the use of preventDefault method
 
-     The preventDefault() method cancels the event if it is cancelable, meaning that the default action or behaviour that belongs to the event will not occur. For example, prevent form submission when clicking on submit button and prevent opening the page URL when clicking on hyperlink are some common use cases.
+     The preventDefault() method is used to stop the default action of an event from occurring. In JavaScript, many events have default behaviors associated with them. For example, clicking a submit button inside a form typically submits the form data to a server, and clicking on a hyperlink (<a> element) navigates to the specified URL.
 
-     ```javascript
-     document
-       .getElementById("link")
-       .addEventListener("click", function (event) {
-         event.preventDefault();
-       });
-     ```
+Example and Usage:
 
-     **Note:** Remember that not all events are cancelable.
+
+Your provided example demonstrates the use of preventDefault() to prevent the default action of clicking on a hyperlink (<a> element):
+
+```javascript
+Copy code
+document.getElementById("link").addEventListener("click", function (event) {
+  event.preventDefault();
+});
+```
+Breakdown of the Example:
+
+Event Listener: You attach an event listener to an element with id "link" (presumably an <a> tag).
+
+Callback Function: When this element is clicked ("click" event), the callback function is executed.
+
+preventDefault(): Inside the callback function, event.preventDefault() is called. This prevents the default action associated with clicking on a hyperlink (navigating to the URL specified in the href attribute) from occurring.
+
+**Note:**:
+Event Cancelability: Not all events can be canceled using preventDefault(). Events are considered cancelable (event.cancelable === true) if their default behavior can be prevented.
+
+Common Use Cases: Use preventDefault() to customize or control what happens when certain events occur, such as preventing form submissions, link navigation, or keyboard shortcuts.
+
+      Remember that not all events are cancelable.
 
      **[⬆ Back to Top](#table-of-contents)**
 
