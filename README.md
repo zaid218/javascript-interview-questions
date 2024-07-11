@@ -2113,8 +2113,6 @@ Event capturing involves the event starting from the outermost parent element do
 Example of Event Capturing
 Consider the following HTML structure:
 ```html
-html
-Copy code
 <div id="outer">
   Outer Div
   <div id="middle">
