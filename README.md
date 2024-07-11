@@ -1759,7 +1759,94 @@
       console.log(value); // "two" // Both promises will resolve, but promise2 is faster
     });
     ```
+    In JavaScript, the Promise class is a powerful tool for handling asynchronous operations. Promises represent a value that may be available now, in the future, 
+    or never. The Promise class provides several methods to work with promises effectively.
 
+    Key Methods of the Promise Class
+    Promise.all(iterable)
+
+    Waits for all promises in the iterable to be fulfilled or for any to be rejected.
+    Returns a single promise that resolves with an array of the results of the input promises.
+    If any promise in the iterable is rejected, the returned promise is rejected with the reason of the first rejected promise.
+   ```javascript
+    const promise1 = Promise.resolve(3);
+    const promise2 = 42;
+    const promise3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, 'foo');
+    });
+    
+    Promise.all([promise1, promise2, promise3]).then(values => {
+    console.log(values); // [3, 42, "foo"]
+    }).catch(error => {
+    console.error(error);
+    });
+   ```
+  Promise.allSettled(iterable)
+   
+   Waits until all promises have either resolved or rejected.
+   Returns a promise that resolves with an array of objects describing the outcome of each promise.
+   ```javascript
+Copy code
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((resolve, reject) => setTimeout(reject, 100, 'error'));
+
+Promise.allSettled([promise1, promise2]).then(results => {
+  console.log(results);
+  // [{ status: 'fulfilled', value: 3 }, { status: 'rejected', reason: 'error' }]
+});
+```
+Promise.race(iterable)
+
+Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves or rejects.
+```javascript
+const promise1 = new Promise((resolve, reject) => setTimeout(resolve, 500, 'one'));
+const promise2 = new Promise((resolve, reject) => setTimeout(resolve, 100, 'two'));
+
+Promise.race([promise1, promise2]).then(value => {
+  console.log(value); // "two"
+});
+```
+Promise.any(iterable)
+
+Returns a promise that resolves as soon as any of the promises in the iterable resolves.
+If none of the promises resolve, it rejects with an AggregateError.
+```javascript
+Copy code
+const promise1 = Promise.reject('error1');
+const promise2 = Promise.reject('error2');
+const promise3 = new Promise((resolve) => setTimeout(resolve, 100, 'success'));
+
+Promise.any([promise1, promise2, promise3]).then(value => {
+  console.log(value); // "success"
+}).catch(error => {
+  console.error(error);
+});
+```
+Promise.resolve(value)
+
+Returns a promise that is resolved with the given value.
+If the value is a promise, it returns that promise; if the value is a thenable (i.e., has a then method), the returned promise will follow that thenable.
+```javascript
+Promise.resolve('foo').then(value => {
+  console.log(value); // "foo"
+});
+```
+Promise.reject(reason)
+
+Returns a promise that is rejected with the given reason.
+```javascript
+Copy code
+Promise.reject('error').catch(reason => {
+  console.error(reason); // "error"
+});
+```
+Summary
+Promise.all: Waits for all promises to resolve or any to reject.
+Promise.allSettled: Waits for all promises to either resolve or reject.
+Promise.race: Resolves or rejects as soon as one promise resolves or rejects.
+Promise.any: Resolves as soon as one promise resolves, or rejects if all promises reject.
+Promise.resolve: Returns a resolved promise with the given value.
+Promise.reject: Returns a rejected promise with the given reason.
     **[⬆ Back to Top](#table-of-contents)**
 
 65. ### What is a strict mode in javascript
