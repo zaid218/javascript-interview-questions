@@ -2533,13 +2533,54 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      The return false statement in event handlers performs the below steps,
 
-     1. First it stops the browser's default action or behaviour.
-     2. It prevents the event from propagating the DOM
-     3. Stops callback execution and returns immediately when called.
+     1. First it stops the browser's default action or behaviour:
+
+        When an event handler returns false, it prevents the browser from performing its default action associated with that event. For example, clicking a link 
+        (<a> element) normally navigates to a new page, but return false; prevents this navigation.
+
+     2. It prevents the event from propagating the DOM:
+
+        The false return value also stops the event from propagating through the DOM tree. This means that if the event occurs on a nested element within other 
+        elements, those parent elements will not receive the event trigger.
+
+     3. Stops callback execution and returns immediately when called:
+        Returning false from an event handler immediately stops further execution of the callback function or any subsequent event handlers attached to the same 
+        event
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Return False Example</title>
+  <script>
+    function handleClick() {
+      console.log("Link clicked!");
+      // Perform some actions...
+      return false;
+    }
+  </script>
+</head>
+<body>
+  <a href="#" onclick="return handleClick();">Click me</a>
+</body>
+</html>
+```
+Explanation:
+
+HTML Structure:
+
+An <a> element with a href="#" attribute serves as a placeholder link (to avoid navigation).
+onclick="return handleClick();" attaches an event handler handleClick() to the click event of the link.
+JavaScript Function (handleClick()):
+
+When the link is clicked, handleClick() function is executed.
+The function logs "Link clicked!" to the console (for demonstration purposes).
+return false; statement is used to prevent the default action (navigating to #) and to stop event propagation.
+
+
 
      **[⬆ Back to Top](#table-of-contents)**
 
-104. ### What is BOM
+105. ### What is BOM
 
      The Browser Object Model (BOM) allows JavaScript to "talk to" the browser. It consists of the objects navigator, history, screen, location and document which are children of the window. The Browser Object Model is not standardized and can change based on different browsers.
 
@@ -2547,7 +2588,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-105. ### What is the use of setTimeout
+106. ### What is the use of setTimeout
 
      The setTimeout() method is used to call a function or evaluate an expression after a specified number of milliseconds. For example, let's log a message after 2 seconds using setTimeout method,
 
@@ -2559,7 +2600,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-106. ### What is the use of setInterval
+107. ### What is the use of setInterval
 
      The setInterval() method is used to call a function or evaluate an expression at specified intervals (in milliseconds). For example, let's log a message after 2 seconds using setInterval method,
 
@@ -2571,13 +2612,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-107. ### Why is JavaScript treated as Single threaded
+108. ### Why is JavaScript treated as Single threaded
 
      JavaScript is a single-threaded language. Because the language specification does not allow the programmer to write code so that the interpreter can run parts of it in parallel in multiple threads or processes. Whereas languages like java, go, C++ can make multi-threaded and multi-process programs.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-108. ### What is an event delegation
+109. ### What is an event delegation
 
      Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.
 
@@ -2599,19 +2640,19 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-109. ### What is ECMAScript
+110. ### What is ECMAScript
 
      ECMAScript is the scripting language that forms the basis of JavaScript. ECMAScript standardized by the ECMA International standards organization in the ECMA-262 and ECMA-402 specifications. The first edition of ECMAScript was released in 1997.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-110. ### What is JSON
+111. ### What is JSON
 
      JSON (JavaScript Object Notation) is a lightweight format that is used for data interchanging. It is based on a subset of JavaScript language in the way objects are built in JavaScript.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-111. ### What are the syntax rules of JSON
+112. ### What are the syntax rules of JSON
 
      Below are the list of syntax rules of JSON
 
@@ -2622,7 +2663,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-112. ### What is the purpose JSON stringify
+113. ### What is the purpose JSON stringify
 
      When sending data to a web server, the data has to be in a string format. You can achieve this by converting JSON object into a string using stringify() method.
 
@@ -2634,7 +2675,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-113. ### How do you parse JSON string
+114. ### How do you parse JSON string
 
      When receiving the data from a web server, the data is always in a string format. But you can convert this string value to a javascript object using parse() method.
 
@@ -2646,19 +2687,19 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-114. ### Why do you need JSON
+115. ### Why do you need JSON
 
      When exchanging data between a browser and a server, the data can only be text. Since JSON is text only, it can easily be sent to and from a server, and used as a data format by any programming language.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-115. ### What are PWAs
+116. ### What are PWAs
 
      Progressive web applications (PWAs) are a type of mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript. These PWAs are deployed to servers, accessible through URLs, and indexed by search engines.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-116. ### What is the purpose of clearTimeout method
+117. ### What is the purpose of clearTimeout method
 
      The clearTimeout() function is used in javascript to clear the timeout which has been set by setTimeout()function before that. i.e, The return value of setTimeout() function is stored in a variable and it’s passed into the clearTimeout() function to clear the timer.
 
@@ -2683,7 +2724,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-117. ### What is the purpose of clearInterval method
+118. ### What is the purpose of clearInterval method
 
      The clearInterval() function is used in javascript to clear the interval which has been set by setInterval() function. i.e, The return value returned by setInterval() function is stored in a variable and it’s passed into the clearInterval() function to clear the interval.
 
@@ -2708,7 +2749,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-118. ### How do you redirect new page in javascript
+119. ### How do you redirect new page in javascript
 
      In vanilla javascript, you can redirect to a new page using the `location` property of window object. The syntax would be as follows,
 
@@ -2720,7 +2761,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-119. ### How do you check whether a string contains a substring
+120. ### How do you check whether a string contains a substring
 
      There are 3 possible ways to check whether a string contains a substring or not,
 
@@ -2750,7 +2791,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-120. ### How do you validate an email in javascript
+121. ### How do you validate an email in javascript
 
      You can validate an email in javascript using regular expressions. It is recommended to do validations on the server side instead of the client side. Because the javascript can be disabled on the client side.
 
@@ -2766,7 +2807,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      The above regular expression accepts unicode characters.
 
-121. ### How do you get the current url with javascript
+122. ### How do you get the current url with javascript
 
      You can use `window.location.href` expression to get the current url path and you can use the same expression for updating the URL too. You can also use `document.URL` for read-only purposes but this solution has issues in FF.
 
@@ -2776,7 +2817,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-122. ### What are the various url properties of location object
+123. ### What are the various url properties of location object
 
      The below `Location` object properties can be used to access URL components of the page,
 
@@ -2791,7 +2832,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-123. ### How do get query string values in javascript
+124. ### How do get query string values in javascript
 
      You can use URLSearchParams to get query string values in javascript. Let's see an example to get the client code value from URL query string,
 
@@ -2802,7 +2843,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-124. ### How do you check if a key exists in an object
+125. ### How do you check if a key exists in an object
 
      You can check whether a key exists in an object or not using three approaches,
 
@@ -2837,7 +2878,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-125. ### How do you loop through or enumerate javascript object
+126. ### How do you loop through or enumerate javascript object
 
      You can use the `for-in` loop to loop through javascript object. You can also make sure that the key you get is an actual property of an object, and doesn't come from the prototype using `hasOwnProperty` method.
 
@@ -2857,7 +2898,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-126. ### How do you test for an empty object
+127. ### How do you test for an empty object
 
      There are different solutions based on ECMAScript versions
 
@@ -2889,7 +2930,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-127. ### What is an arguments object
+128. ### What is an arguments object
 
      The arguments object is an Array-like object accessible inside functions that contains the values of the arguments passed to that function. For example, let's see how to use arguments object inside sum function,
 
@@ -2913,7 +2954,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-128. ### How do you make first letter of the string in an uppercase
+129. ### How do you make first letter of the string in an uppercase
 
      You can create a function which uses a chain of string methods such as charAt, toUpperCase and slice methods to generate a string with the first letter in uppercase.
 
@@ -2925,7 +2966,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-129. ### What are the pros and cons of for loops
+130. ### What are the pros and cons of for loops
 
      The for-loop is a commonly used iteration syntax in javascript. It has both pros and cons
 
@@ -2942,7 +2983,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-130. ### How do you display the current date in javascript
+131. ### How do you display the current date in javascript
 
      You can use `new Date()` to generate a new Date object containing the current date and time. For example, let's display the current date in mm/dd/yyyy
 
@@ -2958,7 +2999,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-131. ### How do you compare two date objects
+132. ### How do you compare two date objects
 
      You need to use date.getTime() method to compare date values instead of comparison operators (==, !=, ===, and !== operators)
 
@@ -2971,7 +3012,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-132. ### How do you check if a string starts with another string
+133. ### How do you check if a string starts with another string
 
      You can use ECMAScript 6's `String.prototype.startsWith()` method to check if a string starts with another string or not. But it is not yet supported in all browsers. Let's see an example to see this usage,
 
@@ -2982,7 +3023,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-133. ### How do you trim a string in javascript
+134. ### How do you trim a string in javascript
 
      JavaScript provided a trim method on string types to trim any whitespaces present at the beginning or ending of the string.
 
@@ -3006,7 +3047,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-134. ### How do you add a key value pair in javascript
+135. ### How do you add a key value pair in javascript
 
      There are two possible solutions to add new properties to an object. Let's take a simple object to explain these solutions.
 
@@ -3031,7 +3072,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-135. ### Is the !-- notation represents a special operator
+136. ### Is the !-- notation represents a special operator
 
      No,that's not a special operator. But it is a combination of 2 standard operators one after the other,
 
@@ -3042,7 +3083,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-136. ### How do you assign default values to variables
+137. ### How do you assign default values to variables
 
      You can use the logical or operator `||` in an assignment expression to provide a default value. The syntax looks like as below,
 
@@ -3054,7 +3095,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-137. ### How do you define multiline strings
+138. ### How do you define multiline strings
 
      You can define multiline string literals using the '\n' character followed by line terminator('\').
 
@@ -3068,13 +3109,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-138. ### What is an app shell model
+139. ### What is an app shell model
 
      An application shell (or app shell) architecture is one way to build a Progressive Web App that reliably and instantly loads on your users' screens, similar to what you see in native applications. It is useful for getting some initial HTML to the screen fast without a network.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-139. ### Can we define properties for functions
+140. ### Can we define properties for functions
 
      Yes, We can define properties for functions because functions are also objects.
 
@@ -3092,7 +3133,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-140. ### What is the way to find the number of parameters expected by a function
+141. ### What is the way to find the number of parameters expected by a function
 
      You can use `function.length` syntax to find the number of parameters expected by a function. Let's take an example of `sum` function to calculate the sum of numbers,
 
@@ -3105,7 +3146,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-141. ### What is a polyfill
+142. ### What is a polyfill
 
      A polyfill is a piece of JS code used to provide modern functionality on older browsers that do not natively support it. For example, Silverlight plugin polyfill can be used to mimic the functionality of an HTML Canvas element on Microsoft Internet Explorer 7.
 
@@ -3115,7 +3156,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-142. ### What are break and continue statements
+143. ### What are break and continue statements
 
      The break statement is used to "jump out" of a loop. i.e, It breaks the loop and continues executing the code after the loop.
 
@@ -3141,7 +3182,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-143. ### What are js labels
+144. ### What are js labels
 
      The label statement allows us to name loops and blocks in JavaScript. We can then use these labels to refer back to the code later. For example, the below code with labels avoids printing the numbers when they are same,
 
@@ -3165,7 +3206,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-144. ### What are the benefits of keeping declarations at the top
+145. ### What are the benefits of keeping declarations at the top
 
      It is recommended to keep all declarations at the top of each script or function. The benefits of doing this are,
 
@@ -3176,7 +3217,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-145. ### What are the benefits of initializing variables
+146. ### What are the benefits of initializing variables
 
      It is recommended to initialize variables because of the below benefits,
 
@@ -3186,7 +3227,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-146. ### What are the recommendations to create new object
+147. ### What are the recommendations to create new object
 
      It is recommended to avoid creating new objects using `new Object()`. Instead you can initialize values based on it's type to create the objects.
 
@@ -3212,7 +3253,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-147. ### How do you define JSON arrays
+148. ### How do you define JSON arrays
 
      JSON arrays are written inside square brackets and arrays contain javascript objects. For example, the JSON array of users would be as below,
 
@@ -3226,7 +3267,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-148. ### How do you generate random integers
+149. ### How do you generate random integers
 
      You can use Math.random() with Math.floor() to return random integers. For example, if you want generate random integers between 1 to 10, the multiplication factor should be 10,
 
@@ -3239,7 +3280,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-149. ### Can you write a random integers function to print integers within a range
+150. ### Can you write a random integers function to print integers within a range
 
      Yes, you can create a proper random function to return a random number between min and max (both included)
 
@@ -3253,25 +3294,25 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-150. ### What is tree shaking
+151. ### What is tree shaking
 
      Tree shaking is a form of dead code elimination. It means that unused modules will not be included in the bundle during the build process and for that it relies on the static structure of ES2015 module syntax,( i.e. import and export). Initially this has been popularized by the ES2015 module bundler `rollup`.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-151. ### What is the need of tree shaking
+152. ### What is the need of tree shaking
 
      Tree Shaking can significantly reduce the code size in any application. i.e, The less code we send over the wire the more performant the application will be. For example, if we just want to create a “Hello World” Application using SPA frameworks then it will take around a few MBs, but by tree shaking it can bring down the size to just a few hundred KBs. Tree shaking is implemented in Rollup and Webpack bundlers.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-152. ### Is it recommended to use eval
+153. ### Is it recommended to use eval
 
      No, it allows arbitrary code to be run which causes a security problem. As we know that the eval() function is used to run text as code. In most of the cases, it should not be necessary to use it.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-153. ### What is a Regular Expression
+154. ### What is a Regular Expression
 
      A regular expression is a sequence of characters that forms a search pattern. You can use this search pattern for searching data in a text. These can be used to perform all types of text search and text replace operations. Let's see the syntax format now,
 
@@ -3287,7 +3328,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-154. ### What are the string methods that accept Regular expression
+155. ### What are the string methods that accept Regular expression
 
      There are six string methods: search(), replace(), replaceAll(), match(), matchAll(), and split().
 
@@ -3323,7 +3364,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-155. ### What are modifiers in regular expression
+156. ### What are modifiers in regular expression
 
      Modifiers can be used to perform case-insensitive and global searches. Let's list down some of the modifiers,
 
@@ -3343,7 +3384,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-156. ### What are regular expression patterns
+157. ### What are regular expression patterns
 
      Regular Expressions provide a group of patterns in order to match characters. Basically they are categorized into 3 types,
 
@@ -3365,7 +3406,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-157. ### What is a RegExp object
+158. ### What is a RegExp object
 
      RegExp object is a regular expression object with predefined properties and methods. Let's see the simple usage of RegExp object,
 
@@ -3377,7 +3418,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-158. ### How do you search a string for a pattern
+159. ### How do you search a string for a pattern
 
      You can use the test() method of regular expression in order to search a string for a pattern, and return true or false depending on the result.
 
@@ -3388,7 +3429,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-159. ### What is the purpose of exec method
+160. ### What is the purpose of exec method
 
      The purpose of exec method is similar to test method but it executes a search for a match in a specified string and returns a result array, or null instead of returning true/false.
 
@@ -3399,7 +3440,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-160. ### How do you change the style of a HTML element
+161. ### How do you change the style of a HTML element
 
      You can change inline style or classname of a HTML element using javascript
 
@@ -3417,13 +3458,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-161. ### What would be the result of 1+2+'3'
+162. ### What would be the result of 1+2+'3'
 
      The output is going to be `33`. Since `1` and `2` are numeric values, the result of the first two digits is going to be a numeric value `3`. The next digit is a string type value because of that the addition of numeric value `3` and string type value `3` is just going to be a concatenation value `33`.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-162. ### What is a debugger statement
+163. ### What is a debugger statement
 
      The debugger statement invokes any available debugging functionality, such as setting a breakpoint. If no debugging functionality is available, this statement has no effect.
      For example, in the below function a debugger statement has been inserted. So
@@ -3439,13 +3480,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-163. ### What is the purpose of breakpoints in debugging
+164. ### What is the purpose of breakpoints in debugging
 
      You can set breakpoints in the javascript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, javascript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-164. ### Can I use reserved words as identifiers
+165. ### Can I use reserved words as identifiers
 
      No, you cannot use the reserved words as variables, labels, object or function names. Let's see one simple example,
 
@@ -3455,7 +3496,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-165. ### How do you detect a mobile browser
+166. ### How do you detect a mobile browser
 
      You can use regex which returns a true or false value depending on whether or not the user is browsing with a mobile.
 
@@ -3479,7 +3520,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-166. ### How do you detect a mobile browser without regexp
+167. ### How do you detect a mobile browser without regexp
 
      You can detect mobile browsers by simply running through a list of devices and checking if the useragent matches anything. This is an alternative solution for RegExp usage,
 
@@ -3503,7 +3544,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-167. ### How do you get the image width and height using JS
+168. ### How do you get the image width and height using JS
 
      You can programmatically get the image and check the dimensions(width and height) using Javascript.
 
@@ -3517,7 +3558,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-168. ### How do you make synchronous HTTP request
+169. ### How do you make synchronous HTTP request
 
      Browsers provide an XMLHttpRequest object which can be used to make synchronous HTTP requests from JavaScript
 
@@ -3532,7 +3573,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-169. ### How do you make asynchronous HTTP request
+170. ### How do you make asynchronous HTTP request
 
      Browsers provide an XMLHttpRequest object which can be used to make asynchronous HTTP requests from JavaScript by passing the 3rd parameter as true.
 
@@ -3550,7 +3591,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-170. ### How do you convert date to another timezone in javascript
+171. ### How do you convert date to another timezone in javascript
 
      You can use the toLocaleString() method to convert dates in one timezone to another. For example, let's convert current date to British English timezone as below,
 
@@ -3560,7 +3601,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-171. ### What are the properties used to get size of window
+172. ### What are the properties used to get size of window
 
      You can use innerWidth, innerHeight, clientWidth, clientHeight properties of windows, document element and document body objects to find the size of a window. Let's use them combination of these properties to calculate the size of a window or document,
 
@@ -3578,7 +3619,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-172. ### What is a conditional operator in javascript
+173. ### What is a conditional operator in javascript
 
      The conditional (ternary) operator is the only JavaScript operator that takes three operands which acts as a shortcut for if statements.
 
@@ -3591,7 +3632,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-173. ### Can you apply chaining on conditional operator
+174. ### Can you apply chaining on conditional operator
 
      Yes, you can apply chaining on conditional operators similar to if … else if … else if … else chain. The syntax is going to be as below,
 
@@ -3623,7 +3664,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-174. ### What are the ways to execute javascript after page load
+175. ### What are the ways to execute javascript after page load
 
      You can execute javascript after page load in many different ways,
 
@@ -3647,7 +3688,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-175. ### What is the difference between proto and prototype
+176. ### What is the difference between proto and prototype
 
      The `__proto__` object is the actual object that is used in the lookup chain to resolve methods, etc. Whereas `prototype` is the object that is used to build `__proto__` when you create an object with new.
 
@@ -3667,7 +3708,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-176. ### Can you give an example of when you really need a semicolon
+177. ### Can you give an example of when you really need a semicolon
 
      It is recommended to use semicolons after every statement in JavaScript. For example, in the below case it throws an error ".. is not a function" at runtime due to missing semicolon.
 
@@ -3699,7 +3740,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-177. ### What is a freeze method
+178. ### What is a freeze method
 
      The **freeze()** method is used to freeze an object. Freezing an object does not allow adding new properties to an object, prevents removing, and prevents changing the enumerability, configurability, or writability of existing properties. i.e. It returns the passed object and does not create a frozen copy.
 
@@ -3733,7 +3774,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-178. ### What is the purpose of freeze method
+179. ### What is the purpose of freeze method
 
      Below are the main benefits of using freeze method,
 
@@ -3742,13 +3783,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-179. ### Why do I need to use freeze method
+180. ### Why do I need to use freeze method
 
      In the Object-oriented paradigm, an existing API contains certain elements that are not intended to be extended, modified, or re-used outside of their current context. Hence it works as the `final` keyword which is used in various languages.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-180. ### How do you detect a browser language preference
+181. ### How do you detect a browser language preference
 
      You can use navigator object to detect a browser language preference as below,
 
@@ -3763,7 +3804,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-181. ### How to convert string to title case with javascript
+182. ### How to convert string to title case with javascript
 
      Title case means that the first letter of each word is capitalized. You can convert a string to title case using the below function,
 
@@ -3778,7 +3819,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-182. ### How do you detect javascript disabled in the page
+183. ### How do you detect javascript disabled in the page
 
      You can use the `<noscript>` tag to detect javascript disabled or not. The code block inside `<noscript>` gets executed when JavaScript is disabled, and is typically used to display alternative content when the page generated in JavaScript.
 
@@ -3793,7 +3834,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-183. ### What are various operators supported by javascript
+184. ### What are various operators supported by javascript
 
      An operator is capable of manipulating(mathematical and logical computations) a certain value or operand. There are various operators supported by JavaScript as below,
 
@@ -3806,7 +3847,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-184. ### What is a rest parameter
+185. ### What is a rest parameter
 
      Rest parameter is an improved way to handle function parameters which allows us to represent an indefinite number of arguments as an array. The syntax would be as below,
 
@@ -3837,7 +3878,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-185. ### What happens if you do not use rest parameter as a last argument
+186. ### What happens if you do not use rest parameter as a last argument
 
      The rest parameter should be the last argument, as its job is to collect all the remaining arguments into an array. For example, if you define a function like below it doesn’t make any sense and will throw an error.
 
@@ -3850,7 +3891,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-186. ### What are the bitwise operators available in javascript
+187. ### What are the bitwise operators available in javascript
 
      Below are the list of bitwise logical operators used in JavaScript
 
@@ -3864,7 +3905,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-187. ### What is a spread operator
+188. ### What is a spread operator
 
      Spread operator allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements. Let's take an example to see this behavior,
 
@@ -3880,7 +3921,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-188. ### How do you determine whether object is frozen or not
+189. ### How do you determine whether object is frozen or not
 
      Object.isFrozen() method is used to determine if an object is frozen or not.An object is frozen if all of the below conditions hold true,
 
@@ -3899,7 +3940,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-189. ### How do you determine two values same or not using object
+190. ### How do you determine two values same or not using object
 
      The Object.is() method determines whether two values are the same value. For example, the usage with different types of values would be,
 
@@ -3924,7 +3965,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-190. ### What is the purpose of using object is method
+191. ### What is the purpose of using object is method
 
      Some of the applications of Object's `is` method are follows,
 
@@ -3935,7 +3976,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-191. ### How do you copy properties from one object to other
+192. ### How do you copy properties from one object to other
 
      You can use the Object.assign() method which is used to copy the values and properties from one or more source objects to a target object. It returns the target object which has properties and values copied from the source objects. The syntax would be as below,
 
@@ -3960,7 +4001,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-192. ### What are the applications of assign method
+193. ### What are the applications of assign method
 
      Below are the some of main applications of Object.assign() method,
 
@@ -3969,7 +4010,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-193. ### What is a proxy object
+194. ### What is a proxy object
 
      The Proxy object is used to define custom behavior for fundamental operations such as property lookup, assignment, enumeration, function invocation, etc. 
      
@@ -4027,7 +4068,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-194. ### What is the purpose of seal method
+195. ### What is the purpose of seal method
 
      The **Object.seal()** method is used to seal an object, by preventing new properties from being added to it and marking all existing properties as non-configurable. But values of present properties can still be changed as long as they are writable. Let's see the below example to understand more about seal() method
 
@@ -4044,7 +4085,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-195. ### What are the applications of seal method
+196. ### What are the applications of seal method
 
      Below are the main applications of Object.seal() method,
 
@@ -4053,13 +4094,13 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-196. ### What are the differences between freeze and seal methods
+197. ### What are the differences between freeze and seal methods
 
      If an object is frozen using the Object.freeze() method then its properties become immutable and no changes can be made in them whereas if an object is sealed using the Object.seal() method then the changes can be made in the existing properties of the object.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-197. ### How do you determine if an object is sealed or not
+198. ### How do you determine if an object is sealed or not
 
      The Object.isSealed() method is used to determine if an object is sealed or not. An object is sealed if all of the below conditions hold true
 
@@ -4080,7 +4121,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-198. ### How do you get enumerable key and value pairs
+199. ### How do you get enumerable key and value pairs
 
      The Object.entries() method is used to return an array of a given object's own enumerable string-keyed property [key, value] pairs, in the same order as that provided by a for...in loop. Let's see the functionality of object.entries() method in an example,
 
@@ -4100,7 +4141,7 @@ Correctness: Your explanation accurately describes that stopPropagation() stops 
 
      **[⬆ Back to Top](#table-of-contents)**
 
-199. ### What is the main difference between Object.values and Object.entries method
+200. ### What is the main difference between Object.values and Object.entries method
 
      The Object.values() method's behavior is similar to Object.entries() method but it returns an array of values instead [key,value] pairs.
 
